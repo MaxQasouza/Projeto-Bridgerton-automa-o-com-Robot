@@ -1,13 +1,13 @@
 {
   "info": {
-    "_postman_id": "549453f7-ef5a-4b71-9bfe-b8feae3da4b8",
-    "name": "00.Register",
+    "_postman_id": "0c790cd7-f4e8-40ee-a54e-fa15e6f95c12",
+    "name": "00_register",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "39657970"
+    "_exporter_id": "35092969"
   },
   "item": [
     {
-      "name": "Happy_Path",
+      "name": "happy_path",
       "item": [
         {
           "name": "register_Admin",
@@ -101,14 +101,10 @@
       ]
     },
     {
-      "name": "Sad_Path",
+      "name": "exception",
       "item": [
         {
-          "name": "Admin",
-          "item": []
-        },
-        {
-          "name": "User",
+          "name": "register_user",
           "item": [
             {
               "name": "Name",
@@ -671,6 +667,14 @@
               ]
             }
           ]
+        },
+        {
+          "name": "New Request",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
         }
       ]
     }

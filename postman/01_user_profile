@@ -1,0 +1,14 @@
+{
+  "info": {
+    "_postman_id": "497ae702-bbd5-4c8a-adb3-c3e1edd4cd49",
+    "name": "01_user_profile",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "35092969"
+  },
+  "item": [
+    {
+      "name": "happy_path",
+      "item": []
+    }
+  ]
+}
