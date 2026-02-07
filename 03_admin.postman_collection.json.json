@@ -1,0 +1,130 @@
+{
+  "info": {
+    "_postman_id": "27159d9f-7949-45fe-8ec9-faa0f8672875",
+    "name": "03_admin",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "39657970"
+  },
+  "item": [
+    {
+      "name": "happy_path",
+      "item": [
+        {
+          "name": "list_all_users",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{Token_Admin}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/admin/users/6983d81c95e5db9ab86f47a2",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "admin",
+                "users",
+                "6983d81c95e5db9ab86f47a2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "list_user_ID",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{Token_Admin}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/admin/users/6983d81c95e5db9ab86f47a2",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "admin",
+                "users",
+                "6983d81c95e5db9ab86f47a2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update_user_ID",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{Token_Admin}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"role\": \"user\",\r\n    \"fullName\": \"Matheus Teste Victor\",\r\n    \"email\": \"1functionalteam@qacoders.com\",\r\n    \"secretQuestion\": \"Qual sua cor favorita ?\",\r\n    \"secretAnswer\": \"Amarelo\",\r\n    \"password\": \"1234@Test\",\r\n    \"confirmPassword\": \"1234@Test\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/admin/users/6983d81c95e5db9ab86f47a2",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "admin",
+                "users",
+                "6983d81c95e5db9ab86f47a2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "New Request",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/admin/users/{id}",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "admin",
+                "users",
+                "{id}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
