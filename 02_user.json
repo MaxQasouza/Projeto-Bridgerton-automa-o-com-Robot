@@ -1,94 +1,475 @@
 {
   "info": {
-    "_postman_id": "ba56b666-bd02-4464-b47e-fbf9fc9b15be",
-    "name": "02_user",
+    "_postman_id": "4fd7f272-6cfb-470c-932e-6f30bc7177f1",
+    "name": "02_auth",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "39657970"
+    "_exporter_id": "35092969"
   },
   "item": [
     {
-      "name": "happy_path",
+      "name": "dependencies",
       "item": [
         {
-          "name": "user_profile",
-          "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{Token_User}}",
-                  "type": "string"
-                }
-              ]
-            },
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{URL}}user/profile",
-              "host": [
-                "{{URL}}user"
-              ],
-              "path": [
-                "profile"
-              ]
+          "name": "register_User",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "\r",
+                  " \r",
+                  "function surname() {\r",
+                  "    const surnames = [\r",
+                  "        \"Silva\", \"Santos\", \"Oliveira\", \"Souza\", \"Lima\", \"Pereira\", \"da Costa\", \"dos Santos\", \"da Silva\",\r",
+                  "        \"Rodrigues\", \"de Almeida\", \"Nascimento\", \"Carvalho\", \"Martins\", \"Gomes\",\r",
+                  "        \"Fernandes\", \"Lopes\", \"Monteiro\", \"Barbosa\", \"Reis\", \"Freitas\", \"Dias\"\r",
+                  "    ];\r",
+                  "    return surnames[Math.floor(Math.random() * surnames.length)];\r",
+                  "}\r",
+                  "pm.environment.set(\"Surname\", surname());\r",
+                  " \r",
+                  "pm.environment.set(\"FullName\", pm.environment.get(\"Name\") \r",
+                  "+ \" \" + pm.environment.get(\"Surname\"));\r",
+                  "\r",
+                  "function domain() {\r",
+                  "    const email = [\r",
+                  "        \"@email.com\", \"@email.com.br\", \"@gmail.com\", \"@yahoo.com\", \"@hotmail.com\", \"@outlook.com.br\", \"@protonmail.com\", \"@zoho.com\", \"@icloud.com\", \"@aol.com\", \"@mail.com\", \"@yandex.com\", \"@mail.com\", \"@yahoo.com\", \"@yahoo.com\", \"@yahoo.com.br\"\r",
+                  "    ];\r",
+                  "    return email[Math.floor(Math.random() * email.length)];\r",
+                  "}\r",
+                  "const userEmail = domain();\r",
+                  " \r",
+                  "const cleanName = pm.environment.get(\"Name\").toLowerCase().replace(/\\s+/g, '');\r",
+                  "const cleanSurname = pm.environment.get(\"Surname\").toLowerCase().replace(/\\s+/g, '');\r",
+                  " \r",
+                  "pm.environment.set(\"Email\", cleanName + '.' + cleanSurname + userEmail);\r",
+                  "\r",
+                  "function salvarPerguntaSecreta() {\r",
+                  "\r",
+                  "    const perguntasERespostas = {\r",
+                  "        \"Qual sua cor favorita ?\": [\r",
+                  "            \"Azul\",\r",
+                  "            \"Vermelho\",\r",
+                  "            \"Preto\",\r",
+                  "            \"Branco\",\r",
+                  "            \"Roxo\",\r",
+                  "            \"Verde\",\r",
+                  "            \"Rosa\",\r",
+                  "            \"Amarelo\",\r",
+                  "            \"Cinza\",\r",
+                  "            \"Turquesa\"\r",
+                  "        ],\r",
+                  "\r",
+                  "        \"Qual o nome do seu primeiro animal de estimação ?\": [\r",
+                  "            \"Rex\",\r",
+                  "            \"Luna\",\r",
+                  "            \"Bolinha\",\r",
+                  "            \"Thor\",\r",
+                  "            \"Mel\",\r",
+                  "            \"Nina\",\r",
+                  "            \"Toby\",\r",
+                  "            \"Belinha\",\r",
+                  "            \"Simba\",\r",
+                  "            \"Fred\"\r",
+                  "        ],\r",
+                  "\r",
+                  "        \"Qual a primeira escola em que você estudou ?\": [\r",
+                  "            \"Escola Primavera\",\r",
+                  "            \"Colégio São José\",\r",
+                  "            \"Escola Municipal Esperança\",\r",
+                  "            \"Colégio Pequeno Príncipe\",\r",
+                  "            \"Escola Arco-Íris\",\r",
+                  "            \"Instituto Saber\",\r",
+                  "            \"Escola Caminho Feliz\",\r",
+                  "            \"Colégio Nova Geração\",\r",
+                  "            \"Escola Estrelinha do Saber\",\r",
+                  "            \"Centro Educacional Futuro\"\r",
+                  "        ],\r",
+                  "\r",
+                  "        \"Qual sua comida favorita ?\": [\r",
+                  "            \"Pizza\",\r",
+                  "            \"Lasanha\",\r",
+                  "            \"Hambúrguer\",\r",
+                  "            \"Sushi\",\r",
+                  "            \"Churrasco\",\r",
+                  "            \"Macarrão\",\r",
+                  "            \"Feijoada\",\r",
+                  "            \"Strogonoff\",\r",
+                  "            \"Salada Caesar\",\r",
+                  "            \"Tacos\"\r",
+                  "        ]\r",
+                  "    };\r",
+                  "\r",
+                  "    function getRandomPergunta() {\r",
+                  "        const listaPerguntas = Object.keys(perguntasERespostas);\r",
+                  "        const randomIndex = Math.floor(Math.random() * listaPerguntas.length);\r",
+                  "        return listaPerguntas[randomIndex];\r",
+                  "    }\r",
+                  "\r",
+                  "    function getRespostaAleatoria(pergunta) {\r",
+                  "        const listaRespostas = perguntasERespostas[pergunta];\r",
+                  "        const randomIndex = Math.floor(Math.random() * listaRespostas.length);\r",
+                  "        return listaRespostas[randomIndex];\r",
+                  "    }\r",
+                  "\r",
+                  "    const perguntaSelecionada = getRandomPergunta();\r",
+                  "    const respostaSelecionada = getRespostaAleatoria(perguntaSelecionada);\r",
+                  "\r",
+                  "    // ✅ Aspas corrigidas\r",
+                  "    pm.environment.set(\"SecretQuestion\", perguntaSelecionada);\r",
+                  "    pm.environment.set(\"SecretAnswer\", respostaSelecionada);\r",
+                  "\r",
+                  "}\r",
+                  "\r",
+                  "salvarPerguntaSecreta();\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
             }
-          },
-          "response": []
-        },
-        {
-          "name": "update_profile",
+          ],
           "request": {
-            "method": "PUT",
+            "method": "POST",
             "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{   \"role\": \"user\",\r\n    \"fullName\": \"{{FullName}}\",\r\n    \"email\": \"{{Email}}\",\r\n    \"secretQuestion\": \"{{SecretQuestion}}\",\r\n    \"secretAnswer\": \"{{SecretAnswer}}\",\r\n    \"password\": \"1234@Test0000\",\r\n    \"confirmPassword\": \"1234@Test0000\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
             "url": {
-              "raw": "{{URL}}/user/profile",
+              "raw": "{{URL}}/user/register",
               "host": [
                 "{{URL}}"
               ],
               "path": [
                 "user",
-                "profile"
+                "register"
               ]
             }
           },
           "response": []
         }
       ]
-    }
-  ],
-  "auth": {
-    "type": "bearer",
-    "bearer": [
-      {
-        "key": "token",
-        "value": "{{Token_User}}",
-        "type": "string"
-      }
-    ]
-  },
-  "event": [
-    {
-      "listen": "prerequest",
-      "script": {
-        "type": "text/javascript",
-        "packages": {},
-        "requests": {},
-        "exec": [
-          ""
-        ]
-      }
     },
     {
-      "listen": "test",
-      "script": {
-        "type": "text/javascript",
-        "packages": {},
-        "requests": {},
-        "exec": [
-          ""
-        ]
-      }
+      "name": "Happy_Path",
+      "item": [
+        {
+          "name": "register_User",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "\r",
+                  " \r",
+                  "function surname() {\r",
+                  "    const surnames = [\r",
+                  "        \"Silva\", \"Santos\", \"Oliveira\", \"Souza\", \"Lima\", \"Pereira\", \"da Costa\", \"dos Santos\", \"da Silva\",\r",
+                  "        \"Rodrigues\", \"de Almeida\", \"Nascimento\", \"Carvalho\", \"Martins\", \"Gomes\",\r",
+                  "        \"Fernandes\", \"Lopes\", \"Monteiro\", \"Barbosa\", \"Reis\", \"Freitas\", \"Dias\"\r",
+                  "    ];\r",
+                  "    return surnames[Math.floor(Math.random() * surnames.length)];\r",
+                  "}\r",
+                  "pm.environment.set(\"Surname\", surname());\r",
+                  " \r",
+                  "pm.environment.set(\"FullName\", pm.environment.get(\"Name\") \r",
+                  "+ \" \" + pm.environment.get(\"Surname\"));\r",
+                  "\r",
+                  "function domain() {\r",
+                  "    const email = [\r",
+                  "        \"@email.com\", \"@email.com.br\", \"@gmail.com\", \"@yahoo.com\", \"@hotmail.com\", \"@outlook.com.br\", \"@protonmail.com\", \"@zoho.com\", \"@icloud.com\", \"@aol.com\", \"@mail.com\", \"@yandex.com\", \"@mail.com\", \"@yahoo.com\", \"@yahoo.com\", \"@yahoo.com.br\"\r",
+                  "    ];\r",
+                  "    return email[Math.floor(Math.random() * email.length)];\r",
+                  "}\r",
+                  "const userEmail = domain();\r",
+                  " \r",
+                  "const cleanName = pm.environment.get(\"Name\").toLowerCase().replace(/\\s+/g, '');\r",
+                  "const cleanSurname = pm.environment.get(\"Surname\").toLowerCase().replace(/\\s+/g, '');\r",
+                  " \r",
+                  "pm.environment.set(\"Email\", cleanName + '.' + cleanSurname + userEmail);\r",
+                  "\r",
+                  "function salvarPerguntaSecreta() {\r",
+                  "\r",
+                  "    const perguntasERespostas = {\r",
+                  "        \"Qual sua cor favorita ?\": [\r",
+                  "            \"Azul\",\r",
+                  "            \"Vermelho\",\r",
+                  "            \"Preto\",\r",
+                  "            \"Branco\",\r",
+                  "            \"Roxo\",\r",
+                  "            \"Verde\",\r",
+                  "            \"Rosa\",\r",
+                  "            \"Amarelo\",\r",
+                  "            \"Cinza\",\r",
+                  "            \"Turquesa\"\r",
+                  "        ],\r",
+                  "\r",
+                  "        \"Qual o nome do seu primeiro animal de estimação ?\": [\r",
+                  "            \"Rex\",\r",
+                  "            \"Luna\",\r",
+                  "            \"Bolinha\",\r",
+                  "            \"Thor\",\r",
+                  "            \"Mel\",\r",
+                  "            \"Nina\",\r",
+                  "            \"Toby\",\r",
+                  "            \"Belinha\",\r",
+                  "            \"Simba\",\r",
+                  "            \"Fred\"\r",
+                  "        ],\r",
+                  "\r",
+                  "        \"Qual a primeira escola em que você estudou ?\": [\r",
+                  "            \"Escola Primavera\",\r",
+                  "            \"Colégio São José\",\r",
+                  "            \"Escola Municipal Esperança\",\r",
+                  "            \"Colégio Pequeno Príncipe\",\r",
+                  "            \"Escola Arco-Íris\",\r",
+                  "            \"Instituto Saber\",\r",
+                  "            \"Escola Caminho Feliz\",\r",
+                  "            \"Colégio Nova Geração\",\r",
+                  "            \"Escola Estrelinha do Saber\",\r",
+                  "            \"Centro Educacional Futuro\"\r",
+                  "        ],\r",
+                  "\r",
+                  "        \"Qual sua comida favorita ?\": [\r",
+                  "            \"Pizza\",\r",
+                  "            \"Lasanha\",\r",
+                  "            \"Hambúrguer\",\r",
+                  "            \"Sushi\",\r",
+                  "            \"Churrasco\",\r",
+                  "            \"Macarrão\",\r",
+                  "            \"Feijoada\",\r",
+                  "            \"Strogonoff\",\r",
+                  "            \"Salada Caesar\",\r",
+                  "            \"Tacos\"\r",
+                  "        ]\r",
+                  "    };\r",
+                  "\r",
+                  "    function getRandomPergunta() {\r",
+                  "        const listaPerguntas = Object.keys(perguntasERespostas);\r",
+                  "        const randomIndex = Math.floor(Math.random() * listaPerguntas.length);\r",
+                  "        return listaPerguntas[randomIndex];\r",
+                  "    }\r",
+                  "\r",
+                  "    function getRespostaAleatoria(pergunta) {\r",
+                  "        const listaRespostas = perguntasERespostas[pergunta];\r",
+                  "        const randomIndex = Math.floor(Math.random() * listaRespostas.length);\r",
+                  "        return listaRespostas[randomIndex];\r",
+                  "    }\r",
+                  "\r",
+                  "    const perguntaSelecionada = getRandomPergunta();\r",
+                  "    const respostaSelecionada = getRespostaAleatoria(perguntaSelecionada);\r",
+                  "\r",
+                  "    // ✅ Aspas corrigidas\r",
+                  "    pm.environment.set(\"SecretQuestion\", perguntaSelecionada);\r",
+                  "    pm.environment.set(\"SecretAnswer\", respostaSelecionada);\r",
+                  "\r",
+                  "}\r",
+                  "\r",
+                  "salvarPerguntaSecreta();\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{   \"role\": \"user\",\r\n    \"fullName\": \"{{FullName}}\",\r\n    \"email\": \"{{Email}}\",\r\n    \"secretQuestion\": \"{{SecretQuestion}}\",\r\n    \"secretAnswer\": \"{{SecretAnswer}}\",\r\n    \"password\": \"1234@Test0000\",\r\n    \"confirmPassword\": \"1234@Test0000\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/user/register",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "user",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "login_Admin",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"{{emailAdmin}}\",\r\n    \"password\": \"1234@Test0000\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/auth/login",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "exception",
+      "item": [
+        {
+          "name": "e-mail-unregistered",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"unregistered@email.com\",\n  \"password\": \"1234@Test\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/auth/login",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "e-mail-blank",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"\",\n  \"password\": \"1234@Test\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/auth/login",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "password-incorrect",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"sysadmin@qacoders.com\",\n  \"password\": \"wrongpass\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/auth/login",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "password-blank",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"sysadmin@qacoders.com\",\n  \"password\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/auth/login",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "delete_dependecies",
+      "item": [
+        {
+          "name": "delete_User",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/user/697a1df4304b360216cfb761",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "user",
+                "697a1df4304b360216cfb761"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     }
   ]
 }

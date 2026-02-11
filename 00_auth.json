@@ -1,37 +1,22 @@
 {
   "info": {
-    "_postman_id": "d7cb0172-7b63-4406-8bb5-99f604e34c4e",
-    "name": "00_auth",
+    "_postman_id": "0c790cd7-f4e8-40ee-a54e-fa15e6f95c12",
+    "name": "00_register",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "39657970"
+    "_exporter_id": "35092969"
   },
   "item": [
     {
-      "name": "Happy_Path",
+      "name": "happy_path",
       "item": [
         {
-          "name": "login_Admin",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "const response = pm.response.json();\r",
-                  "pm.environment.set(\"Token_Admin\", response.token);\r",
-                  ""
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
+          "name": "register_Admin",
           "request": {
             "method": "POST",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"email\": \"{{emailAdmin}}\",\r\n    \"password\": \"{{passwordAdmin}}\"\r\n}",
+              "raw": "{\r\n    \"fullName\": \"Administrador\",\r\n    \"email\": \"{{emailAdmin}}\",\r\n    \"secretQuestion\": \"Qual sua cor favorita ?\",\r\n    \"secretAnswer\": \"Amarelo\",\r\n    \"password\": \"1234@Test\",\r\n    \"confirmPassword\": \"1234@Test\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -39,38 +24,131 @@
               }
             },
             "url": {
-              "raw": "{{URL}}/auth/login",
+              "raw": "{{URL}}/user/register",
               "host": [
                 "{{URL}}"
               ],
               "path": [
-                "auth",
-                "login"
+                "user",
+                "register"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "login_User",
+          "name": "register_User",
           "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "const response = pm.response.json();\r",
-                  "pm.environment.set(\"Token_User\", response.token);\r",
-                  ""
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            },
             {
               "listen": "prerequest",
               "script": {
                 "exec": [
+                  "\r",
+                  " \r",
+                  "function surname() {\r",
+                  "    const surnames = [\r",
+                  "        \"Silva\", \"Santos\", \"Oliveira\", \"Souza\", \"Lima\", \"Pereira\", \"da Costa\", \"dos Santos\", \"da Silva\",\r",
+                  "        \"Rodrigues\", \"de Almeida\", \"Nascimento\", \"Carvalho\", \"Martins\", \"Gomes\",\r",
+                  "        \"Fernandes\", \"Lopes\", \"Monteiro\", \"Barbosa\", \"Reis\", \"Freitas\", \"Dias\"\r",
+                  "    ];\r",
+                  "    return surnames[Math.floor(Math.random() * surnames.length)];\r",
+                  "}\r",
+                  "pm.environment.set(\"Surname\", surname());\r",
+                  " \r",
+                  "pm.environment.set(\"FullName\", pm.environment.get(\"Name\") \r",
+                  "+ \" \" + pm.environment.get(\"Surname\"));\r",
+                  "\r",
+                  "function domain() {\r",
+                  "    const email = [\r",
+                  "        \"@email.com\", \"@email.com.br\", \"@gmail.com\", \"@yahoo.com\", \"@hotmail.com\", \"@outlook.com.br\", \"@protonmail.com\", \"@zoho.com\", \"@icloud.com\", \"@aol.com\", \"@mail.com\", \"@yandex.com\", \"@mail.com\", \"@yahoo.com\", \"@yahoo.com\", \"@yahoo.com.br\"\r",
+                  "    ];\r",
+                  "    return email[Math.floor(Math.random() * email.length)];\r",
+                  "}\r",
+                  "const userEmail = domain();\r",
+                  " \r",
+                  "const cleanName = pm.environment.get(\"Name\").toLowerCase().replace(/\\s+/g, '');\r",
+                  "const cleanSurname = pm.environment.get(\"Surname\").toLowerCase().replace(/\\s+/g, '');\r",
+                  " \r",
+                  "pm.environment.set(\"Email\", cleanName + '.' + cleanSurname + userEmail);\r",
+                  "\r",
+                  "function salvarPerguntaSecreta() {\r",
+                  "\r",
+                  "    const perguntasERespostas = {\r",
+                  "        \"Qual sua cor favorita ?\": [\r",
+                  "            \"Azul\",\r",
+                  "            \"Vermelho\",\r",
+                  "            \"Preto\",\r",
+                  "            \"Branco\",\r",
+                  "            \"Roxo\",\r",
+                  "            \"Verde\",\r",
+                  "            \"Rosa\",\r",
+                  "            \"Amarelo\",\r",
+                  "            \"Cinza\",\r",
+                  "            \"Turquesa\"\r",
+                  "        ],\r",
+                  "\r",
+                  "        \"Qual o nome do seu primeiro animal de estimação ?\": [\r",
+                  "            \"Rex\",\r",
+                  "            \"Luna\",\r",
+                  "            \"Bolinha\",\r",
+                  "            \"Thor\",\r",
+                  "            \"Mel\",\r",
+                  "            \"Nina\",\r",
+                  "            \"Toby\",\r",
+                  "            \"Belinha\",\r",
+                  "            \"Simba\",\r",
+                  "            \"Fred\"\r",
+                  "        ],\r",
+                  "\r",
+                  "        \"Qual a primeira escola em que você estudou ?\": [\r",
+                  "            \"Escola Primavera\",\r",
+                  "            \"Colégio São José\",\r",
+                  "            \"Escola Municipal Esperança\",\r",
+                  "            \"Colégio Pequeno Príncipe\",\r",
+                  "            \"Escola Arco-Íris\",\r",
+                  "            \"Instituto Saber\",\r",
+                  "            \"Escola Caminho Feliz\",\r",
+                  "            \"Colégio Nova Geração\",\r",
+                  "            \"Escola Estrelinha do Saber\",\r",
+                  "            \"Centro Educacional Futuro\"\r",
+                  "        ],\r",
+                  "\r",
+                  "        \"Qual sua comida favorita ?\": [\r",
+                  "            \"Pizza\",\r",
+                  "            \"Lasanha\",\r",
+                  "            \"Hambúrguer\",\r",
+                  "            \"Sushi\",\r",
+                  "            \"Churrasco\",\r",
+                  "            \"Macarrão\",\r",
+                  "            \"Feijoada\",\r",
+                  "            \"Strogonoff\",\r",
+                  "            \"Salada Caesar\",\r",
+                  "            \"Tacos\"\r",
+                  "        ]\r",
+                  "    };\r",
+                  "\r",
+                  "    function getRandomPergunta() {\r",
+                  "        const listaPerguntas = Object.keys(perguntasERespostas);\r",
+                  "        const randomIndex = Math.floor(Math.random() * listaPerguntas.length);\r",
+                  "        return listaPerguntas[randomIndex];\r",
+                  "    }\r",
+                  "\r",
+                  "    function getRespostaAleatoria(pergunta) {\r",
+                  "        const listaRespostas = perguntasERespostas[pergunta];\r",
+                  "        const randomIndex = Math.floor(Math.random() * listaRespostas.length);\r",
+                  "        return listaRespostas[randomIndex];\r",
+                  "    }\r",
+                  "\r",
+                  "    const perguntaSelecionada = getRandomPergunta();\r",
+                  "    const respostaSelecionada = getRespostaAleatoria(perguntaSelecionada);\r",
+                  "\r",
+                  "    // ✅ Aspas corrigidas\r",
+                  "    pm.environment.set(\"SecretQuestion\", perguntaSelecionada);\r",
+                  "    pm.environment.set(\"SecretAnswer\", respostaSelecionada);\r",
+                  "\r",
+                  "}\r",
+                  "\r",
+                  "salvarPerguntaSecreta();\r",
                   ""
                 ],
                 "type": "text/javascript",
@@ -84,7 +162,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"email\": \"1functionalteam@qacoders.com\",\r\n    \"password\": \"{{passwordUser}}\"\r\n}",
+              "raw": "{   \"role\": \"user\",\r\n    \"fullName\": \"{{FullName}}\",\r\n    \"email\": \"{{Email}}\",\r\n    \"secretQuestion\": \"{{SecretQuestion}}\",\r\n    \"secretAnswer\": \"{{SecretAnswer}}\",\r\n    \"password\": \"1234@Test0000\",\r\n    \"confirmPassword\": \"1234@Test0000\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -92,13 +170,48 @@
               }
             },
             "url": {
-              "raw": "{{URL}}/auth/login",
+              "raw": "{{URL}}/user/register",
               "host": [
                 "{{URL}}"
               ],
               "path": [
-                "auth",
-                "login"
+                "user",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete_User",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/user/697a1df4304b360216cfb761",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "user",
+                "697a1df4304b360216cfb761"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "list_Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/user",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "user"
               ]
             }
           },
@@ -110,110 +223,575 @@
       "name": "exception",
       "item": [
         {
-          "name": "e-mail-unregistered",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"email\": \"unregistered@email.com\",\n  \"password\": \"1234@Test\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
+          "name": "register_user",
+          "item": [
+            {
+              "name": "Name",
+              "item": [
+                {
+                  "name": "name-Blank",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"fullName\": \"\",\r\n    \"email\": \"sysadmin@qacoders.com\",\r\n    \"secretQuestion\": \"Qual sua cor favorita ?\",\r\n    \"secretAnswer\": \"Amarelo\",\r\n    \"password\": \"1234@Test\",\r\n    \"confirmPassword\": \"1234@Test\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{URL}}/user/register",
+                      "host": [
+                        "{{URL}}"
+                      ],
+                      "path": [
+                        "user",
+                        "register"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "name-With-101-Characters",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"fullName\": \"Débora\",\r\n    \"email\": \"sysadmin@qacoders.com\",\r\n    \"secretQuestion\": \"Qual sua cor favorita ?\",\r\n    \"secretAnswer\": \"Amarelo\",\r\n    \"password\": \"1234@Test\",\r\n    \"confirmPassword\": \"1234@Test\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{URL}}/user/register",
+                      "host": [
+                        "{{URL}}"
+                      ],
+                      "path": [
+                        "user",
+                        "register"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "name-With-One-Character",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"fullName\": \"D\",\r\n    \"email\": \"sysadmin@qacoders.com\",\r\n    \"secretQuestion\": \"Qual sua cor favorita ?\",\r\n    \"secretAnswer\": \"Amarelo\",\r\n    \"password\": \"1234@Test\",\r\n    \"confirmPassword\": \"1234@Test\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{URL}}/user/register",
+                      "host": [
+                        "{{URL}}"
+                      ],
+                      "path": [
+                        "user",
+                        "register"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "name-Only-UpperCase",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"fullName\": \"MATHEUS\",\r\n    \"email\": \"sysadmin@qacoders.com\",\r\n    \"secretQuestion\": \"Qual sua cor favorita ?\",\r\n    \"secretAnswer\": \"Amarelo\",\r\n    \"password\": \"1234@Test\",\r\n    \"confirmPassword\": \"1234@Test\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{URL}}/user/register",
+                      "host": [
+                        "{{URL}}"
+                      ],
+                      "path": [
+                        "user",
+                        "register"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "name-Whit-Space",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"fullName\": \"Admini strador\",\r\n    \"email\": \"sysadmin@qacoders.com\",\r\n    \"secretQuestion\": \"Qual sua cor favorita ?\",\r\n    \"secretAnswer\": \"Amarelo\",\r\n    \"password\": \"1234@Test\",\r\n    \"confirmPassword\": \"1234@Test\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{URL}}/user/register",
+                      "host": [
+                        "{{URL}}"
+                      ],
+                      "path": [
+                        "user",
+                        "register"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "name-Only-Numbers",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"fullName\": \"123456\",\r\n    \"email\": \"sysadmin@qacoders.com\",\r\n    \"secretQuestion\": \"Qual sua cor favorita ?\",\r\n    \"secretAnswer\": \"Amarelo\",\r\n    \"password\": \"1234@Test\",\r\n    \"confirmPassword\": \"1234@Test\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{URL}}/user/register",
+                      "host": [
+                        "{{URL}}"
+                      ],
+                      "path": [
+                        "user",
+                        "register"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "name-Only-LowerCase",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"fullName\": \"matheus\",\r\n    \"email\": \"sysadmin@qacoders.com\",\r\n    \"secretQuestion\": \"Qual sua cor favorita ?\",\r\n    \"secretAnswer\": \"Amarelo\",\r\n    \"password\": \"1234@Test\",\r\n    \"confirmPassword\": \"1234@Test\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{URL}}/user/register",
+                      "host": [
+                        "{{URL}}"
+                      ],
+                      "path": [
+                        "user",
+                        "register"
+                      ]
+                    }
+                  },
+                  "response": []
                 }
-              }
+              ]
             },
-            "url": {
-              "raw": "{{URL}}/auth/login",
-              "host": [
-                "{{URL}}"
-              ],
-              "path": [
-                "auth",
-                "login"
+            {
+              "name": "E-mail",
+              "item": [
+                {
+                  "name": "e-mail-Blank",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"fullName\": \"Administrador\",\r\n    \"email\": \"\",\r\n    \"secretQuestion\": \"Qual sua cor favorita ?\",\r\n    \"secretAnswer\": \"Amarelo\",\r\n    \"password\": \"1234@Test\",\r\n    \"confirmPassword\": \"1234@Test\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{URL}}/user/register",
+                      "host": [
+                        "{{URL}}"
+                      ],
+                      "path": [
+                        "user",
+                        "register"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "e-mail-Whit-Space",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"fullName\": \"Administrador\",\r\n    \"email\": \"sysadmin @qacoders.com\",\r\n    \"secretQuestion\": \"Qual sua cor favorita ?\",\r\n    \"secretAnswer\": \"Amarelo\",\r\n    \"password\": \"1234@Test\",\r\n    \"confirmPassword\": \"1234@Test\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{URL}}/user/register",
+                      "host": [
+                        "{{URL}}"
+                      ],
+                      "path": [
+                        "user",
+                        "register"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "e-mail-Whit-Space-Domain",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"fullName\": \"Matheus\",\r\n    \"email\": \"sysadmin@qa coders.com\",\r\n    \"secretQuestion\": \"Qual sua cor favorita ?\",\r\n    \"secretAnswer\": \"Amarelo\",\r\n    \"password\": \"1234@Test\",\r\n    \"confirmPassword\": \"1234@Test\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{URL}}/user/register",
+                      "host": [
+                        "{{URL}}"
+                      ],
+                      "path": [
+                        "user",
+                        "register"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "e-mail-with-Special-Character",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"fullName\": \"Matheus\",\r\n    \"email\": \"sysa##@dmin@qacoders.com\",\r\n    \"secretQuestion\": \"Qual sua cor favorita ?\",\r\n    \"secretAnswer\": \"Amarelo\",\r\n    \"password\": \"1234@Test\",\r\n    \"confirmPassword\": \"1234@Test\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{URL}}/user/register",
+                      "host": [
+                        "{{URL}}"
+                      ],
+                      "path": [
+                        "user",
+                        "register"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "e-mail-Duplicated",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"fullName\": \"Matheus\",\r\n    \"email\": \"sysadmin@qacoders.com\",\r\n    \"secretQuestion\": \"Qual sua cor favorita ?\",\r\n    \"secretAnswer\": \"Amarelo\",\r\n    \"password\": \"1234@Test\",\r\n    \"confirmPassword\": \"1234@Test\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{URL}}/user/register",
+                      "host": [
+                        "{{URL}}"
+                      ],
+                      "path": [
+                        "user",
+                        "register"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "Password",
+              "item": [
+                {
+                  "name": "password-Blank",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"fullName\": \"Administrador\",\r\n    \"email\": \"sysadmin@qacoders.com\",\r\n    \"secretQuestion\": \"Qual sua cor favorita ?\",\r\n    \"secretAnswer\": \"Amarelo\",\r\n    \"password\": \"\",\r\n    \"confirmPassword\": \"1234@Test\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{URL}}/user/register",
+                      "host": [
+                        "{{URL}}"
+                      ],
+                      "path": [
+                        "user",
+                        "register"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "password-With-7-Characters",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"fullName\": \"Administrador\",\r\n    \"email\": \"sysaadmin@qacoders.com\",\r\n    \"secretQuestion\": \"Qual sua cor favorita ?\",\r\n    \"secretAnswer\": \"Amarelo\",\r\n    \"password\": \"P@ssw\",\r\n    \"confirmPassword\": \"P@ssw0r\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{URL}}/user/register",
+                      "host": [
+                        "{{URL}}"
+                      ],
+                      "path": [
+                        "user",
+                        "register"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "password-With-13-Characters",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"fullName\": \"Administrador\",\r\n    \"email\": \"sysaaadmin@qacoders.com\",\r\n    \"secretQuestion\": \"Qual sua cor favorita ?\",\r\n    \"secretAnswer\": \"Amarelo\",\r\n    \"password\": \"P@ssw0rd.!123\",\r\n    \"confirmPassword\": \"P@ssw0r\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{URL}}/user/register",
+                      "host": [
+                        "{{URL}}"
+                      ],
+                      "path": [
+                        "user",
+                        "register"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "password-Only-Numbers",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"fullName\": \"Administrador\",\r\n    \"email\": \"sysadmin@qacoders.com\",\r\n    \"secretQuestion\": \"Qual sua cor favorita ?\",\r\n    \"secretAnswer\": \"Amarelo\",\r\n    \"password\": \"123456\",\r\n    \"confirmPassword\": \"1234@Test\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{URL}}/user/register",
+                      "host": [
+                        "{{URL}}"
+                      ],
+                      "path": [
+                        "user",
+                        "register"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "password-Only-LowerCase-Character",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"fullName\": \"Administrador\",\r\n    \"email\": \"sysadmin@qacoders.com\",\r\n    \"secretQuestion\": \"Qual sua cor favorita ?\",\r\n    \"secretAnswer\": \"Amarelo\",\r\n    \"password\": \"aaaaaaa\",\r\n    \"confirmPassword\": \"1234@Test\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{URL}}/user/register",
+                      "host": [
+                        "{{URL}}"
+                      ],
+                      "path": [
+                        "user",
+                        "register"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "password-Only-UpperCase-Character",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"fullName\": \"Administrador\",\r\n    \"email\": \"sysadmin@qacoders.com\",\r\n    \"secretQuestion\": \"Qual sua cor favorita ?\",\r\n    \"secretAnswer\": \"Amarelo\",\r\n    \"password\": \"AAAAAAAA\",\r\n    \"confirmPassword\": \"1234@Test\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{URL}}/user/register",
+                      "host": [
+                        "{{URL}}"
+                      ],
+                      "path": [
+                        "user",
+                        "register"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "password-Only-Special-Character",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"fullName\": \"Administrador\",\r\n    \"email\": \"sysadmin@qacoders.com\",\r\n    \"secretQuestion\": \"Qual sua cor favorita ?\",\r\n    \"secretAnswer\": \"Amarelo\",\r\n    \"password\": \"@@@@@$$$$%\",\r\n    \"confirmPassword\": \"1234@Test\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{URL}}/user/register",
+                      "host": [
+                        "{{URL}}"
+                      ],
+                      "path": [
+                        "user",
+                        "register"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "ConfirmPassword",
+              "item": [
+                {
+                  "name": "password-Blank Copy",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"fullName\": \"Administrador\",\r\n    \"email\": \"sysadmin@qacoders.com\",\r\n    \"secretQuestion\": \"Qual sua cor favorita ?\",\r\n    \"secretAnswer\": \"Amarelo\",\r\n    \"password\": \"\",\r\n    \"confirmPassword\": \"1234@Test\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{URL}}/user/register",
+                      "host": [
+                        "{{URL}}"
+                      ],
+                      "path": [
+                        "user",
+                        "register"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
               ]
             }
-          },
-          "response": []
+          ]
         },
         {
-          "name": "e-mail-blank",
+          "name": "New Request",
           "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"email\": \"\",\n  \"password\": \"1234@Test\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{URL}}/auth/login",
-              "host": [
-                "{{URL}}"
-              ],
-              "path": [
-                "auth",
-                "login"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "password-incorrect",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"email\": \"sysadmin@qacoders.com\",\n  \"password\": \"wrongpass\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{URL}}/auth/login",
-              "host": [
-                "{{URL}}"
-              ],
-              "path": [
-                "auth",
-                "login"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "password-blank",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"email\": \"sysadmin@qacoders.com\",\n  \"password\": \"\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{URL}}/auth/login",
-              "host": [
-                "{{URL}}"
-              ],
-              "path": [
-                "auth",
-                "login"
-              ]
-            }
+            "method": "GET",
+            "header": []
           },
           "response": []
         }
