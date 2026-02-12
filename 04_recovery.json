@@ -1,9 +1,10 @@
 {
   "info": {
-    "_postman_id": "66b0b42d-d964-4ba3-85e6-703b53e2761f",
+    "_postman_id": "9e0edc85-dc71-4067-90e8-8a76a371a1db",
     "name": "04_recovery",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "35092969"
+    "_exporter_id": "52320149",
+    "_collection_link": "https://go.postman.co/collection/52320149-9e0edc85-dc71-4067-90e8-8a76a371a1db?source=collection_link"
   },
   "item": [
     {
@@ -16,14 +17,123 @@
               "listen": "prerequest",
               "script": {
                 "exec": [
-                  "function colors() {\r",
+                  "function firstName() {\r",
                   "    const names = [\r",
-                  "        \"Vermelho\", \"Azul\", \"Verde\", \"Amarelo\", \"Roxo\", \"Laranja\", \"Rosa\", \"Marrom\", \"Preto\", \"Branco\", \"Cinza\", \"Turquesa\", \"Dourado\", \"Prateado\", \"Bege\", \"Vinho\", \"Salmão\", \"Lilás\", \"Azul-marinho\", \"Verde-oliva\"\r",
+                  "        \"Lucas\", \"Gabriel\", \"Miguel\", \"Arthur\", \"Heitor\", \"Bernardo\", \"Davi\", \"Lorenzo\", \"Théo\", \"Pedro\",\r",
+                  "        \"Valentina\", \"Alice\", \"Sophia\", \"Helena\", \"Laura\", \"Isabella\", \"Manuela\", \"Júlia\", \"Heloísa\", \"Luísa\",\r",
+                  "        \"Matheus\", \"Rafael\", \"Enzo\", \"Guilherme\", \"Nicolas\", \"Samuel\", \"João\", \"Henrique\", \"Gustavo\", \"Felipe\",\r",
+                  "        \"Maria\", \"Ana\", \"Beatriz\", \"Larissa\", \"Mariana\", \"Camila\", \"Letícia\", \"Amanda\", \"Bruna\", \"Carolina\"\r",
                   "    ];\r",
                   "    return names[Math.floor(Math.random() * names.length)];\r",
                   "}\r",
+                  "pm.environment.set(\"Name\", firstName());\r",
+                  "\r",
                   " \r",
-                  "pm.environment.set(\"Colors\", colors())"
+                  "function surname() {\r",
+                  "    const surnames = [\r",
+                  "        \"Silva\", \"Santos\", \"Oliveira\", \"Souza\", \"Lima\", \"Pereira\", \"da Costa\", \"dos Santos\", \"da Silva\",\r",
+                  "        \"Rodrigues\", \"de Almeida\", \"Nascimento\", \"Carvalho\", \"Martins\", \"Gomes\",\r",
+                  "        \"Fernandes\", \"Lopes\", \"Monteiro\", \"Barbosa\", \"Reis\", \"Freitas\", \"Dias\"\r",
+                  "    ];\r",
+                  "    return surnames[Math.floor(Math.random() * surnames.length)];\r",
+                  "}\r",
+                  "pm.environment.set(\"Surname\", surname());\r",
+                  " \r",
+                  "pm.environment.set(\"FullName\", pm.environment.get(\"Name\") \r",
+                  "+ \" \" + pm.environment.get(\"Surname\"));\r",
+                  "\r",
+                  "function domain() {\r",
+                  "    const email = [\r",
+                  "        \"@email.com\", \"@email.com.br\", \"@gmail.com\", \"@yahoo.com\", \"@hotmail.com\", \"@outlook.com.br\", \"@protonmail.com\", \"@zoho.com\", \"@icloud.com\", \"@aol.com\", \"@mail.com\", \"@yandex.com\", \"@mail.com\", \"@yahoo.com\", \"@yahoo.com\", \"@yahoo.com.br\"\r",
+                  "    ];\r",
+                  "    return email[Math.floor(Math.random() * email.length)];\r",
+                  "}\r",
+                  "const emailDomain = domain();\r",
+                  " \r",
+                  "const cleanName = pm.environment.get(\"Name\").toLowerCase().replace(/\\s+/g, '');\r",
+                  "const cleanSurname = pm.environment.get(\"Surname\").toLowerCase().replace(/\\s+/g, '');\r",
+                  " \r",
+                  "pm.environment.set(\"emailUser\", cleanName + '.' + cleanSurname + emailDomain);\r",
+                  "\r",
+                  "function salvarPerguntaSecreta() {\r",
+                  "\r",
+                  "    const perguntasERespostas = {\r",
+                  "        \"Qual sua cor favorita ?\": [\r",
+                  "            \"Azul\",\r",
+                  "            \"Vermelho\",\r",
+                  "            \"Preto\",\r",
+                  "            \"Branco\",\r",
+                  "            \"Roxo\",\r",
+                  "            \"Verde\",\r",
+                  "            \"Rosa\",\r",
+                  "            \"Amarelo\",\r",
+                  "            \"Cinza\",\r",
+                  "            \"Turquesa\"\r",
+                  "        ],\r",
+                  "\r",
+                  "        \"Qual o nome do seu primeiro animal de estimação ?\": [\r",
+                  "            \"Rex\",\r",
+                  "            \"Luna\",\r",
+                  "            \"Bolinha\",\r",
+                  "            \"Thor\",\r",
+                  "            \"Mel\",\r",
+                  "            \"Nina\",\r",
+                  "            \"Toby\",\r",
+                  "            \"Belinha\",\r",
+                  "            \"Simba\",\r",
+                  "            \"Fred\"\r",
+                  "        ],\r",
+                  "\r",
+                  "        \"Qual a primeira escola em que você estudou ?\": [\r",
+                  "            \"Escola Primavera\",\r",
+                  "            \"Colégio São José\",\r",
+                  "            \"Escola Municipal Esperança\",\r",
+                  "            \"Colégio Pequeno Príncipe\",\r",
+                  "            \"Escola Arco-Íris\",\r",
+                  "            \"Instituto Saber\",\r",
+                  "            \"Escola Caminho Feliz\",\r",
+                  "            \"Colégio Nova Geração\",\r",
+                  "            \"Escola Estrelinha do Saber\",\r",
+                  "            \"Centro Educacional Futuro\"\r",
+                  "        ],\r",
+                  "\r",
+                  "        \"Qual sua comida favorita ?\": [\r",
+                  "            \"Pizza\",\r",
+                  "            \"Lasanha\",\r",
+                  "            \"Hambúrguer\",\r",
+                  "            \"Sushi\",\r",
+                  "            \"Churrasco\",\r",
+                  "            \"Macarrão\",\r",
+                  "            \"Feijoada\",\r",
+                  "            \"Strogonoff\",\r",
+                  "            \"Salada Caesar\",\r",
+                  "            \"Tacos\"\r",
+                  "        ]\r",
+                  "    };\r",
+                  "\r",
+                  "    function getRandomPergunta() {\r",
+                  "        const listaPerguntas = Object.keys(perguntasERespostas);\r",
+                  "        const randomIndex = Math.floor(Math.random() * listaPerguntas.length);\r",
+                  "        return listaPerguntas[randomIndex];\r",
+                  "    }\r",
+                  "\r",
+                  "    function getRespostaAleatoria(pergunta) {\r",
+                  "        const listaRespostas = perguntasERespostas[pergunta];\r",
+                  "        const randomIndex = Math.floor(Math.random() * listaRespostas.length);\r",
+                  "        return listaRespostas[randomIndex];\r",
+                  "    }\r",
+                  "\r",
+                  "    const perguntaSelecionada = getRandomPergunta();\r",
+                  "    const respostaSelecionada = getRespostaAleatoria(perguntaSelecionada);\r",
+                  "\r",
+                  "    // ✅ Aspas corrigidas\r",
+                  "    pm.environment.set(\"SecretQuestion\", perguntaSelecionada);\r",
+                  "    pm.environment.set(\"SecretAnswer\", respostaSelecionada);\r",
+                  "\r",
+                  "}\r",
+                  "\r",
+                  "salvarPerguntaSecreta();\r",
+                  ""
                 ],
                 "type": "text/javascript",
                 "packages": {},
@@ -36,7 +146,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{   \"role\": \"user\",\r\n    \"fullName\": \"Matheus Nunes\",\r\n    \"email\": \"teste@teste.com.br\",\r\n    \"secretQuestion\": \"{{SecretQuestion}}\",\r\n    \"secretAnswer\": \"{{Colors}}\",\r\n    \"password\": \"1234@Test0000\",\r\n    \"confirmPassword\": \"1234@Test0000\"\r\n}",
+              "raw": "{   \"role\": \"user\",\r\n    \"fullName\": \"{{FullName}}\",\r\n    \"email\": \"{{emailUser}}\",\r\n    \"secretQuestion\": \"{{SecretQuestion}}\",\r\n    \"secretAnswer\": \"{{SecretAnswer}}\",\r\n    \"password\": \"1234@Test0000\",\r\n    \"confirmPassword\": \"1234@Test0000\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -68,7 +178,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"email\": \"sysadmin@qacoders.com\"\r\n}",
+              "raw": "{\r\n    \"email\": \"{{emailUser}}\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -95,16 +205,21 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"fullName\": \"Administrador do Sistema\",\r\n    \"email\": \"{{emailAdmin}}\",\r\n    \"password\": \"{{passwordAdmin}}\",\r\n    \"confirmPassword\": \"{{passwordAdmin}}\"\r\n}"
+              "raw": "{\r\n    \"email\": \"{{emailUser}}\",\r\n    \"secretAnswer\": \"{{SecretAnswer}}\",\r\n    \"newPassword\": \"1234@Test1111\",\r\n    \"confirmNewPassword\": \"1234@Test1111\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
-              "raw": "{{URL}}/recovery/checkEmail",
+              "raw": "{{URL}}/recovery/resetPassword",
               "host": [
                 "{{URL}}"
               ],
               "path": [
                 "recovery",
-                "checkEmail"
+                "resetPassword"
               ]
             }
           },
