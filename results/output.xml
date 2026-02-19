@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.1 (Python 3.14.0 on win32)" generated="2026-02-19T20:13:12.150584" rpa="false" schemaversion="5">
+<suite id="s1" name="Signup" source="C:\automação robot Bridgerton\tests\signup.robot">
+<kw name="Start Session" owner="app" type="SETUP">
+<kw name="New Browser" owner="Browser">
+<msg time="2026-02-19T20:13:12.344238" level="INFO">{"browser": "chromium", "headless": false, "chromiumSandbox": false, "devtools": false, "handleSIGHUP": true, "handleSIGINT": true, "handleSIGTERM": true, "slowMo": 0.0, "timeout": 30000.0, "tracesDir": "C:\\automa\u00e7\u00e3o robot Bridgerton\\results\\browser\\traces\\temp\\a46c96a2-7c24-4aa9-b6ff-4f102f12fc08"}</msg>
+<msg time="2026-02-19T20:13:12.344909" level="INFO">Starting GRPC process C:\Python314\Lib\site-packages\BrowserBatteries\bin\grpc_server.exe using at 127.0.0.1:61615</msg>
+<msg time="2026-02-19T20:13:13.012739" level="INFO">Successfully created browser with options: {"browser":"chromium","headless":false,"chromiumSandbox":false,"devtools":false,"handleSIGHUP":true,"handleSIGINT":true,"handleSIGTERM":true,"slowMo":0,"timeout":30000,"tracesDir":"C:\\automação robot Bridgerton\\results\\browser\\traces\\temp\\a46c96a2-7c24-4aa9-b6ff-4f102f12fc08"}</msg>
+<arg>browser=chromium</arg>
+<arg>headless=False</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new playwright Browser with specified options.</doc>
+<status status="PASS" start="2026-02-19T20:13:12.343567" elapsed="0.669454"/>
+</kw>
+<kw name="New Context" owner="Browser">
+<msg time="2026-02-19T20:13:13.014934" level="INFO">{
+  "acceptDownloads": true,
+  "bypassCSP": false,
+  "forcedColors": "none",
+  "ignoreHTTPSErrors": true,
+  "javaScriptEnabled": true,
+  "offline": false,
+  "reducedMotion": "no-preference",
+  "serviceWorkers": "allow",
+  "viewport": {
+    "height": 720,
+    "width": 1280
+  }
+}</msg>
+<msg time="2026-02-19T20:13:13.024920" level="INFO">Successfully created context. </msg>
+<msg time="2026-02-19T20:13:13.024995" level="INFO">{'acceptDownloads': True, 'bypassCSP': False, 'forcedColors': 'none', 'ignoreHTTPSErrors': True, 'javaScriptEnabled': True, 'offline': False, 'reducedMotion': 'no-preference', 'serviceWorkers': 'allow', 'viewport': {'height': 720, 'width': 1280}}</msg>
+<arg>ignoreHTTPSErrors=True</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new BrowserContext with specified options.</doc>
+<status status="PASS" start="2026-02-19T20:13:13.013391" elapsed="0.011681"/>
+</kw>
+<kw name="Set Browser Timeout" owner="Browser">
+<arg>${TIMEOUT}</arg>
+<tag>Config</tag>
+<tag>Setter</tag>
+<doc>Sets the timeout used by most input and getter keywords.</doc>
+<status status="PASS" start="2026-02-19T20:13:13.025241" elapsed="0.002340"/>
+</kw>
+<status status="PASS" start="2026-02-19T20:13:12.342943" elapsed="0.684798"/>
+</kw>
+<test id="s1-t1" name="Signup - Success" line="10">
+<kw name="Go To Home" owner="app">
+<kw name="New Page" owner="Browser">
+<msg time="2026-02-19T20:13:16.255084" level="INFO">Successfully initialized new page object and opened url: https://bridgerton.qacoders.dev.br/</msg>
+<arg>${BASE_URL}/</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Open a new Page.</doc>
+<status status="PASS" start="2026-02-19T20:13:13.031410" elapsed="3.224507"/>
+</kw>
+<kw name="Wait For Load State" owner="Browser">
+<msg time="2026-02-19T20:13:16.259459" level="INFO">Waiting page load to state to receive load in 15000.0</msg>
+<msg time="2026-02-19T20:13:16.272932" level="INFO">Load state load got in 15000</msg>
+<arg>load</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits that the page reaches the required load state.</doc>
+<status status="PASS" start="2026-02-19T20:13:16.256796" elapsed="0.016596"/>
+</kw>
+<status status="PASS" start="2026-02-19T20:13:13.031053" elapsed="3.242834"/>
+</kw>
+<kw name="Open Login Modal" owner="app">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2026-02-19T20:13:16.325036" level="INFO">Waited for Element with selector text=Acessar at state visible</msg>
+<arg>text=Acessar</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2026-02-19T20:13:16.275724" elapsed="0.049489"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2026-02-19T20:13:16.326078" level="INFO">Clicks the element 'text=Acessar'.</msg>
+<arg>text=Acessar</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2026-02-19T20:13:16.325429" elapsed="0.026381"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2026-02-19T20:13:17.171913" level="INFO">Waited for Element with selector text=Bem vindo(a) de volta! at state visible</msg>
+<arg>text=Bem vindo(a) de volta!</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2026-02-19T20:13:16.352014" elapsed="0.820106"/>
+</kw>
+<status status="PASS" start="2026-02-19T20:13:16.274848" elapsed="0.897431"/>
+</kw>
+<kw name="Go To Signup From Login" owner="app">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2026-02-19T20:13:17.182135" level="INFO">Waited for Element with selector text=Cadastre-se já! at state visible</msg>
+<arg>text=Cadastre-se já!</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2026-02-19T20:13:17.173279" elapsed="0.009109"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2026-02-19T20:13:17.183562" level="INFO">Clicks the element 'text=Cadastre-se já!'.</msg>
+<arg>text=Cadastre-se já!</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2026-02-19T20:13:17.182688" elapsed="0.052493"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2026-02-19T20:13:18.092499" level="INFO">Waited for Element with selector text=Faça seu cadastro at state visible</msg>
+<arg>text=Faça seu cadastro</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2026-02-19T20:13:17.236231" elapsed="0.856877"/>
+</kw>
+<status status="PASS" start="2026-02-19T20:13:17.172779" elapsed="0.920739"/>
+</kw>
+<kw name="Signup Page Should Be Visible" owner="signup_page">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2026-02-19T20:13:18.119649" level="INFO">Waited for Element with selector css=#fullName at state visible</msg>
+<arg>${INP_FULLNAME}</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2026-02-19T20:13:18.095914" elapsed="0.024311"/>
+</kw>
+<status status="PASS" start="2026-02-19T20:13:18.094603" elapsed="0.026210"/>
+</kw>
+<kw name="Build User" owner="data_factory">
+<kw name="Get Current Date" owner="DateTime">
+<msg time="2026-02-19T20:13:18.126491" level="INFO">${ts} = 20260219201318</msg>
+<var>${ts}</var>
+<arg>result_format=%Y%m%d%H%M%S</arg>
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<status status="PASS" start="2026-02-19T20:13:18.124610" elapsed="0.002156"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-02-19T20:13:18.130187" level="INFO">${name} = João Fitness</msg>
+<var>${name}</var>
+<arg>João Fitness</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-02-19T20:13:18.127584" elapsed="0.002820"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-02-19T20:13:18.132802" level="INFO">${email} = user_20260219201318@mailinator.com</msg>
+<var>${email}</var>
+<arg>user_${ts}@mailinator.com</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-02-19T20:13:18.131004" elapsed="0.002019"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-02-19T20:13:18.137004" level="INFO">${password} = Abc@12345</msg>
+<var>${password}</var>
+<arg>Abc@12345</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-02-19T20:13:18.134159" elapsed="0.003104"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-02-19T20:13:18.142405" level="INFO">${question} = Qual sua cor favorita ?</msg>
+<var>${question}</var>
+<arg>Qual sua cor favorita ?</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-02-19T20:13:18.138321" elapsed="0.004484"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-02-19T20:13:18.147981" level="INFO">${answer} = Azul</msg>
+<var>${answer}</var>
+<arg>Azul</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-02-19T20:13:18.144417" elapsed="0.003846"/>
+</kw>
+<return>
+<value>${name}</value>
+<value>${email}</value>
+<value>${password}</value>
+<value>${question}</value>
+<value>${answer}</value>
+<status status="PASS" start="2026-02-19T20:13:18.148840" elapsed="0.002971"/>
+</return>
+<msg time="2026-02-19T20:13:18.154963" level="INFO">${name} = João Fitness</msg>
+<msg time="2026-02-19T20:13:18.155995" level="INFO">${email} = user_20260219201318@mailinator.com</msg>
+<msg time="2026-02-19T20:13:18.156814" level="INFO">${password} = Abc@12345</msg>
+<msg time="2026-02-19T20:13:18.157229" level="INFO">${question} = Qual sua cor favorita ?</msg>
+<msg time="2026-02-19T20:13:18.157600" level="INFO">${answer} = Azul</msg>
+<var>${name}</var>
+<var>${email}</var>
+<var>${password}</var>
+<var>${question}</var>
+<var>${answer}</var>
+<status status="PASS" start="2026-02-19T20:13:18.122513" elapsed="0.035328"/>
+</kw>
+<kw name="Fill Signup Form" owner="signup_page">
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-02-19T20:13:18.171654" level="INFO">Fills the text 'João Fitness' in the given field.</msg>
+<arg>${INP_FULLNAME}</arg>
+<arg>${name}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-02-19T20:13:18.167569" elapsed="0.056907"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-02-19T20:13:18.227331" level="INFO">Fills the text 'user_20260219201318@mailinator.com' in the given field.</msg>
+<arg>${INP_EMAIL}</arg>
+<arg>${email}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-02-19T20:13:18.225053" elapsed="0.026973"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-02-19T20:13:18.252872" level="INFO">Fills the text 'Abc@12345' in the given field.</msg>
+<arg>${INP_PASSWORD}</arg>
+<arg>${password}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-02-19T20:13:18.252247" elapsed="0.012855"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-02-19T20:13:18.266057" level="INFO">Fills the text 'Abc@12345' in the given field.</msg>
+<arg>${INP_CONFIRM_PASS}</arg>
+<arg>${confirmPassword}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-02-19T20:13:18.265437" elapsed="0.010124"/>
+</kw>
+<kw name="Select Options By" owner="Browser">
+<msg time="2026-02-19T20:13:18.276491" level="INFO">Selects the option(s) Qual sua cor favorita ? by attribute SelectAttribute.label from element css=#secretQuestion.</msg>
+<arg>${SEL_SECRET_Q}</arg>
+<arg>label</arg>
+<arg>${questionLabel}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Selects options from select element found by ``selector``.</doc>
+<status status="PASS" start="2026-02-19T20:13:18.275866" elapsed="0.026666"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-02-19T20:13:18.303230" level="INFO">Fills the text 'Azul' in the given field.</msg>
+<arg>${INP_SECRET_A}</arg>
+<arg>${answer}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-02-19T20:13:18.302718" elapsed="0.011875"/>
+</kw>
+<arg>${name}</arg>
+<arg>${email}</arg>
+<arg>${password}</arg>
+<arg>${password}</arg>
+<arg>${question}</arg>
+<arg>${answer}</arg>
+<status status="PASS" start="2026-02-19T20:13:18.162195" elapsed="0.152558"/>
+</kw>
+<kw name="Submit Signup" owner="signup_page">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2026-02-19T20:13:18.320829" level="INFO">Waited for Element with selector css=button[type="submit"] at state visible</msg>
+<arg>${BTN_SUBMIT}</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2026-02-19T20:13:18.315380" elapsed="0.005587"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2026-02-19T20:13:18.321613" level="INFO">Clicks the element 'css=button[type="submit"]'.</msg>
+<arg>${BTN_SUBMIT}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2026-02-19T20:13:18.321128" elapsed="0.026166"/>
+</kw>
+<kw name="Wait For Load State" owner="Browser">
+<msg time="2026-02-19T20:13:18.347979" level="INFO">Waiting page load to state to receive networkidle in 15000.0</msg>
+<msg time="2026-02-19T20:13:18.350122" level="INFO">Load state networkidle got in 15000</msg>
+<arg>networkidle</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits that the page reaches the required load state.</doc>
+<status status="PASS" start="2026-02-19T20:13:18.347487" elapsed="0.002783"/>
+</kw>
+<status status="PASS" start="2026-02-19T20:13:18.315046" elapsed="0.035339"/>
+</kw>
+<msg time="2026-02-19T20:13:18.358658" level="INFO">Closing current active page.</msg>
+<msg time="2026-02-19T20:13:18.369999" level="INFO">Successfully closed Page with runBeforeUnload false</msg>
+<status status="PASS" start="2026-02-19T20:13:13.027849" elapsed="5.322850"/>
+</test>
+<kw name="End Session" owner="app" type="TEARDOWN">
+<kw name="Close Browser" owner="Browser">
+<msg time="2026-02-19T20:13:18.560891" level="INFO">Closed browser</msg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-02-19T20:13:18.372204" elapsed="0.188944"/>
+</kw>
+<status status="PASS" start="2026-02-19T20:13:18.371740" elapsed="0.189525"/>
+</kw>
+<status status="PASS" start="2026-02-19T20:13:12.151529" elapsed="6.409784"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Signup" id="s1" pass="1" fail="0" skip="0">Signup</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
