@@ -7,7 +7,7 @@ ${TIMEOUT}      15s
 
 *** Keywords ***
 Start Session
-    New Browser    browser=chromium    headless=False
+    New Browser    browser=chromium    headless=True
     New Context    ignoreHTTPSErrors=True
     Set Browser Timeout    ${TIMEOUT}
 
