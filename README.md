@@ -66,7 +66,7 @@ funcional-squad-deploy-na-sexta/
     </td>
     <td align="center">
       <img src="https://media.licdn.com/dms/image/v2/D4D03AQEWTu35OywTrQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1713762734777?e=1773273600&v=beta&t=1akxtAQBdg8a8w7a_C88dB8IG5Vl2g8i6ZsXOFvAqSc" width="90" alt="AthuuurDev Avatar"><br/>
-      <strong>AthuuurDev</strong><br/>
+      <strong>Arthur Gabriel Pinheiro</strong><br/>
       <a href="https://github.com/ArthuuurDev">GitHub</a> |
       <a href="www.linkedin.com/in/arthur-neres-qa">LinkedIn</a>
     </td>
@@ -78,13 +78,13 @@ funcional-squad-deploy-na-sexta/
     </td>
     <td align="center">
       <img src="https://avatars.githubusercontent.com/u/84079883?v=4" width="90" alt="jose-fps"><br/>
-      <strong>Jose Francisco</strong><br/>
+      <strong>José Francisco Pereira</strong><br/>
       <a href="https://github.com/jose-fps">GitHub</a> |
       <a href="https://www.linkedin.com/in/josefps/">LinkedIn</a>
     </td>
     <td align="center">
       <img src="https://avatars.githubusercontent.com/u/240821923?v=4" width="90" alt="MaxQaSouza"><br/>
-      <strong>MaxQaSouza</strong><br/>
+      <strong>Maxswell Souza</strong><br/>
       <a href="https://github.com/MaxQasouza">GitHub</a> |
       <a href="https://www.linkedin.com/in/maxswell-souza-719883183">LinkedIn</a>
     </td>
