@@ -88,5 +88,11 @@ funcional-squad-deploy-na-sexta/
       <a href="https://github.com/MaxQasouza">GitHub</a> |
       <a href="https://www.linkedin.com/in/maxswell-souza-719883183">LinkedIn</a>
     </td>
+    <td align="center">
+      <img src="https://avatars.githubusercontent.com/u/141160316?v=4" width="90" alt="Matheus Vitor"><br/>
+      <strong>Matheus Vitor</strong><br/>
+      <a href="https://github.com/MatheusVictor01">GitHub</a> |
+      <a href="https://www.linkedin.com/in/matheusvictor-c-nunes/">LinkedIn</a>
+    </td>
   </tr>
 </table>
