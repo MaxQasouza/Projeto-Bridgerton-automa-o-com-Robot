@@ -5,7 +5,7 @@
 <img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" alt="JavaScript"/>
 </p>
 
-Projeto de **testes de API** realizado com base na **documentação Swagger** da aplicação – *Level UP Academy*, como parte do programa de acadêmico da **QA.Coders Academy**.
+Projeto de **testes de API** realizado com base na **documentação Swagger** da aplicação – *bridgerton Academy*, como parte do programa de acadêmico da **QA.Coders Academy**.
 
 >  Objetivo: praticar testes de API, integração e colaboração em equipe.
 
@@ -59,32 +59,32 @@ funcional-squad-deploy-na-sexta/
       <a href="https://www.linkedin.com/in/julianasousa91/">LinkedIn</a>
     </td>
     <td align="center">
-      <img src="https://avatars.githubusercontent.com/u/194153470?v=4" width="90" alt="Lucas Dias Avatar"><br/>
-      <strong>Adriano Vieira</strong><br/>
+      <img src="https://media.licdn.com/dms/image/v2/D4E03AQGCRjuYp9-EkQ/profile-displayphoto-shrink_800_800/B4EZUfe7ywG0Ac-/0/1739989958317?e=1773273600&v=beta&t=Uqwc5QjCJo4xzvvaZULOzmCq07RIbw9jIgt97BH8O7E" width="90" alt="Lucas Dias Avatar"><br/>
+      <strong>Lucas Dias</strong><br/>
       <a href="https://github.com/DiasLuc/">GitHub</a> |
       <a href="https://www.linkedin.com/in/--lucas-dias--/">LinkedIn</a>
     </td>
     <td align="center">
       <img src="https://media.licdn.com/dms/image/v2/D4D03AQEWTu35OywTrQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1713762734777?e=1773273600&v=beta&t=1akxtAQBdg8a8w7a_C88dB8IG5Vl2g8i6ZsXOFvAqSc" width="90" alt="AthuuurDev Avatar"><br/>
-      <strong>Juliana Sousa</strong><br/>
+      <strong>AthuuurDev</strong><br/>
       <a href="https://github.com/ArthuuurDev">GitHub</a> |
       <a href="www.linkedin.com/in/arthur-neres-qa">LinkedIn</a>
     </td>
     <td align="center">
-      <img src="https://media.licdn.com/dms/image/v2/D4D03AQGZEXCQoh7FVQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1723831454835?e=1773273600&v=beta&t=ILFUJ5ouXY2U1cuFTpizeddjTnHXnT3px7ukxT2kKu8" width="90" alt="Ana Cristina Schimidt"><br/>
-      <strong>Rosana Andre</strong><br/>
+      <img src="https://media.licdn.com/dms/image/v2/D4D03AQGZEXCQoh7FVQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1723831454835?e=1773273600&v=beta&t=ILFUJ5ouXY2U1cuFTpizeddjTnHXnT3px7ukxT2kKu8" width="90" alt="Ana Cristina Schmidt"><br/>
+      <strong>Ana Cristina Schmidt</strong><br/>
       <a href="https://github.com/AnaCristinaSchmidt">GitHub</a> |
       <a href="https://www.linkedin.com/in/ana-cristina-schmidt/">LinkedIn</a>
     </td>
     <td align="center">
       <img src="https://avatars.githubusercontent.com/u/84079883?v=4" width="90" alt="jose-fps"><br/>
-      <strong>Luciano Silveira</strong><br/>
+      <strong>Jose Francisco</strong><br/>
       <a href="https://github.com/jose-fps">GitHub</a> |
       <a href="https://www.linkedin.com/in/josefps/">LinkedIn</a>
     </td>
     <td align="center">
       <img src="https://avatars.githubusercontent.com/u/240821923?v=4" width="90" alt="MaxQaSouza"><br/>
-      <strong>Sislan Nascimento</strong><br/>
+      <strong>MaxQaSouza</strong><br/>
       <a href="https://github.com/MaxQasouza">GitHub</a> |
       <a href="https://www.linkedin.com/in/maxswell-souza-719883183">LinkedIn</a>
     </td>
