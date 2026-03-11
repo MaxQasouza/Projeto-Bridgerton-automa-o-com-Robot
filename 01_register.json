@@ -1,5 +1,6 @@
 {
   "info": {
+ dev
     "_postman_id": "ea59747f-ea02-4dca-9bb1-492c23dce94e",
     "name": "01_register",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -230,6 +231,171 @@
               ],
               "path": [
                 "user"
+              ]
+            }
+          },
+          "response": []
+ dev
+        },
+        {
+          "name": "Complete and valid registration with security question.",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 201\", function () { pm.response.to.have.status(201); });\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "function firstName() {\r",
+                  "    let firstName = [\r",
+                  "        \"Juliana\", \"Maicon\", \"Lavinia\", \"Diogo\", \"Davi Lucca\", \"Junior\", \"Fernando\", \"Ana Cristina\", \"Lucas\",\r",
+                  "        \"Carlas\", \"Lara Vitória\", \"Vitoria\", \"Matheus\", \"Robson\", \"Ricardo\",\r",
+                  "        \"Jose Francisco\", \"Carlos\", \"Pedro\", \"Tania\", \"Denise\", \"Viviane\", \"Sandra\"\r",
+                  "    ];\r",
+                  "    \r",
+                  "    let randomItem = firstName[Math.floor(Math.random() * firstName.length)];\r",
+                  "    return randomItem;\r",
+                  "}\r",
+                  "\r",
+                  "function lastName() {\r",
+                  "    let lastName = [\r",
+                  "        \"Silva\", \"Santos\", \"Oliveira\", \"Souza\", \"Lima\", \"Pereira\", \"da Costa\", \"dos Santos\", \"da Silva\",\r",
+                  "        \"Rodrigues\", \"de Almeida\", \"Nascimento\", \"Carvalho\", \"Martins\", \"Gomes\",\r",
+                  "        \"Fernandes\", \"Lopes\", \"Monteiro\", \"Barbosa\", \"Reis\", \"Freitas\", \"Dias\"\r",
+                  "    ];\r",
+                  "     \r",
+                  "    let randomItem = lastName[Math.floor(Math.random() * lastName.length)];\r",
+                  "    return randomItem;\r",
+                  "}\r",
+                  "\r",
+                  "// salvar no environment\r",
+                  "pm.environment.set(\"FirstName\", firstName());\r",
+                  "pm.environment.set(\"LastName\", lastName());\r",
+                  "\r",
+                  "// nome completo\r",
+                  "pm.environment.set(\r",
+                  "    \"FullName\",\r",
+                  "    pm.environment.get(\"FirstName\") + \" \" + pm.environment.get(\"LastName\")\r",
+                  ");\r",
+                  "\r",
+                  "// 🔹 Função para gerar domínio\r",
+                  "function domain() {\r",
+                  "    const emailDomains = [\r",
+                  "        \"@email.com\", \"@email.com.br\", \"@gmail.com\",\r",
+                  "        \"@yahoo.com\", \"@hotmail.com\", \"@outlook.com.br\",\r",
+                  "        \"@protonmail.com\", \"@zoho.com\", \"@icloud.com\",\r",
+                  "        \"@aol.com\", \"@mail.com\", \"@yandex.com\",\r",
+                  "        \"@yahoo.com.br\"\r",
+                  "    ];\r",
+                  "    return emailDomains[Math.floor(Math.random() * emailDomains.length)];\r",
+                  "}\r",
+                  "\r",
+                  "// 🔹 Função para normalizar string (remove acento + espaço)\r",
+                  "function normalizeString(str) {\r",
+                  "    if (!str) return \"\";\r",
+                  "    return str\r",
+                  "        .normalize(\"NFD\")\r",
+                  "        .replace(/[\\u0300-\\u036f]/g, \"\") // remove acentos\r",
+                  "        .replace(/\\s+/g, \"\")            // remove espaços\r",
+                  "        .toLowerCase();\r",
+                  "}\r",
+                  "\r",
+                  "// 🔹 Recupera variáveis com fallback\r",
+                  "const rawName = pm.environment.get(\"Name\") || \"usuario\";\r",
+                  "const rawSurname = pm.environment.get(\"Surname\") || \"teste\";\r",
+                  "\r",
+                  "const cleanName = normalizeString(rawName);\r",
+                  "const cleanSurname = normalizeString(rawSurname);\r",
+                  "\r",
+                  "// 🔹 Parte aleatória para evitar duplicidade\r",
+                  "const randomNumber = Math.floor(Math.random() * 10000);\r",
+                  "\r",
+                  "const userEmail = cleanName + \".\" + cleanSurname + randomNumber + domain();\r",
+                  "\r",
+                  "pm.environment.set(\"Email\", userEmail);\r",
+                  "\r",
+                  "console.log(\"EMAIL GERADO:\", userEmail);\r",
+                  "\r",
+                  "\r",
+                  "// ================= PERGUNTA SECRETA =================\r",
+                  "\r",
+                  "function salvarPerguntaSecreta() {\r",
+                  "\r",
+                  "    const perguntasERespostas = {\r",
+                  "        \"Qual sua cor favorita ?\": [\r",
+                  "            \"Azul\",\"Vermelho\",\"Preto\",\"Branco\",\"Roxo\",\r",
+                  "            \"Verde\",\"Rosa\",\"Amarelo\",\"Cinza\",\"Turquesa\"\r",
+                  "        ],\r",
+                  "        \"Qual o nome do seu primeiro animal de estimação ?\": [\r",
+                  "            \"Rex\",\"Luna\",\"Bolinha\",\"Thor\",\"Mel\",\r",
+                  "            \"Nina\",\"Toby\",\"Belinha\",\"Simba\",\"Fred\"\r",
+                  "        ],\r",
+                  "        \"Qual a primeira escola em que você estudou ?\": [\r",
+                  "            \"Escola Primavera\",\"Colégio São José\",\r",
+                  "            \"Escola Municipal Esperança\",\"Colégio Pequeno Príncipe\",\r",
+                  "            \"Escola Arco\",\"Instituto Saber\",\r",
+                  "            \"Escola Caminho Feliz\",\"Colégio Nova Geração\",\r",
+                  "            \"Escola Estrelinha do Saber\",\"Centro Educacional Futuro\"\r",
+                  "        ],\r",
+                  "        \"Qual sua comida favorita ?\": [\r",
+                  "            \"Pizza\",\"Lasanha\",\"Hambúrguer\",\"Sushi\",\r",
+                  "            \"Churrasco\",\"Macarrão\",\"Feijoada\",\r",
+                  "            \"Strogonoff\",\"Salada Caesar\",\"Tacos\"\r",
+                  "        ]\r",
+                  "    };\r",
+                  "\r",
+                  "    const listaPerguntas = Object.keys(perguntasERespostas);\r",
+                  "    const perguntaSelecionada = listaPerguntas[Math.floor(Math.random() * listaPerguntas.length)];\r",
+                  "\r",
+                  "    const listaRespostas = perguntasERespostas[perguntaSelecionada];\r",
+                  "    const respostaSelecionada = listaRespostas[Math.floor(Math.random() * listaRespostas.length)];\r",
+                  "\r",
+                  "    pm.environment.set(\"SecretQuestion\", perguntaSelecionada);\r",
+                  "    pm.environment.set(\"SecretAnswer\", respostaSelecionada);\r",
+                  "\r",
+                  "    console.log(\"PERGUNTA:\", perguntaSelecionada);\r",
+                  "    console.log(\"RESPOSTA:\", respostaSelecionada);\r",
+                  "}\r",
+                  "\r",
+                  "salvarPerguntaSecreta();\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"role\": \"{{Role}}\",\r\n    \"fullName\": \"{{FullName}}\",\r\n    \"email\": \"{{Email}}\",\r\n    \"secretQuestion\": \"{{SecretQuestion}}\",\r\n    \"secretAnswer\": \"{{SecretAnswer}}\",\r\n    \"password\": \"{{Passawork}}\",\r\n    \"confirmPassword\": \"{{Passawork}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/user/register",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "user",
+                "register"
               ]
             }
           },
@@ -806,6 +972,116 @@
           ]
         },
         {
+ dev
+          "name": "Security Questions",
+          "item": [
+            {
+              "name": "Security response field with numbers (should reject)",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"role\": \"user\",\r\n  \"fullName\": \"Carlos Silva\",\r\n  \"email\": \"syASDASDsadmin@qacoders.com\",\r\n  \"secretQuestion\": \"Qual sua cor favorita ?\",\r\n  \"secretAnswer\": \"12345\",\r\n  \"password\": \"1234@Test\",\r\n  \"confirmPassword\": \"1234@Test\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{URL}}/user/register",
+                  "host": [
+                    "{{URL}}"
+                  ],
+                  "path": [
+                    "user",
+                    "register"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "The security question field should be empty (it should be rejected).",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"role\": \"user\",\r\n  \"fullName\": \"Carlos Silva\",\r\n  \"email\": \"syASDASDsadmin@qacoders.com\",\r\n  \"secretQuestion\": \"\",\r\n  \"secretAnswer\": \"azul\",\r\n  \"password\": \"1234@Test\",\r\n  \"confirmPassword\": \"1234@Test\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{URL}}/user/register",
+                  "host": [
+                    "{{URL}}"
+                  ],
+                  "path": [
+                    "user",
+                    "register"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Security question field with a value outside the allowed options (should be rejected)",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"role\": \"user\",\r\n  \"fullName\": \"Carlos Silva\",\r\n  \"email\": \"syAdsSDASDsadmin@qacoders.com\",\r\n  \"secretQuestion\": \"Qual seu time favorito ?\",\r\n  \"secretAnswer\": \"palmeiras\",\r\n  \"password\": \"1234@Test\",\r\n  \"confirmPassword\": \"1234@Test\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{URL}}/user/register",
+                  "host": [
+                    "{{URL}}"
+                  ],
+                  "path": [
+                    "user",
+                    "register"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Security response field with special characters (should be rejected)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"role\": \"user\",\r\n  \"fullName\": \"Carlos Silva\",\r\n  \"email\": \"syASDASDsadmin@qacoders.com\",\r\n  \"secretQuestion\": \"Qual sua cor favorita ?\",\r\n  \"secretAnswer\": \"@AZUL\",\r\n  \"password\": \"1234@Test\",\r\n  \"confirmPassword\": \"1234@Test\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/user/register",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "user",
+                "register"
+              ]
+=======
           "name": "New Request",
           "request": {
             "method": "GET",
