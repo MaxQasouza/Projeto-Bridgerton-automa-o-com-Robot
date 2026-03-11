@@ -1,10 +1,10 @@
 {
   "info": {
-    "_postman_id": "0e68a0ae-514a-418e-99ac-13c636e5497f",
+ dev
+    "_postman_id": "ea59747f-ea02-4dca-9bb1-492c23dce94e",
     "name": "01_register",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "49387116",
-    "_collection_link": "https://go.postman.co/collection/49387116-0e68a0ae-514a-418e-99ac-13c636e5497f?source=collection_link"
+    "_exporter_id": "35092969"
   },
   "item": [
     {
@@ -235,6 +235,7 @@
             }
           },
           "response": []
+ dev
         },
         {
           "name": "Complete and valid registration with security question.",
@@ -971,6 +972,7 @@
           ]
         },
         {
+ dev
           "name": "Security Questions",
           "item": [
             {
@@ -1079,6 +1081,13 @@
                 "user",
                 "register"
               ]
+=======
+          "name": "New Request",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
             }
           },
           "response": []
