@@ -1,0 +1,52 @@
+{
+	"id": "814d80a8-748f-48e1-872d-24e72c483922",
+	"name": "nutrilife_env",
+	"values": [
+		{
+			"key": "URL",
+			"value": "https://api-bridgerton.qacoders.dev.br/",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "emailAdmin",
+			"value": "sysadmin@qacoders.com",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "passwordAdmin",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "emailUser",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "passwordUser",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "Token_User",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "Token_Admin",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		}
+	],
+	"color": 120,
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2026-02-07T04:12:33.764Z",
+	"_postman_exported_using": "Postman/11.83.4"
+}

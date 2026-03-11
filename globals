@@ -1,0 +1,81 @@
+{
+	"id": "25b5dbb2-bfda-4529-8d65-8e4b29716f88",
+	"values": [
+		{
+			"key": "User_passoword",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "Role",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "Passawork",
+			"value": "1234@Test",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "Token",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "MsgRegisteruser",
+			"value": "Cadastro realizado com sucesso.",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "MsgPasswordLenght",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "MsgPssawordRequired",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "MsgconfirmPassawordRequired",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "MsgConfirmPssawordMismatch",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "MsgFullNameMaxLength",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "MsgFuNameWithoutUppcercaseLetter",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "MsgFullNameWithInvalidCharacters",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"name": "Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2026-03-05T16:50:14.872Z",
+	"_postman_exported_using": "Postman/11.86.5"
+}
