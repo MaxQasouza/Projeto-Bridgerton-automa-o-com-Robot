@@ -1,10 +1,9 @@
 {
   "info": {
-    "_postman_id": "0e68a0ae-514a-418e-99ac-13c636e5497f",
+    "_postman_id": "144e71f7-e961-4ccc-8b27-f9b7eb6e62d9",
     "name": "01_register",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "49387116",
-    "_collection_link": "https://go.postman.co/collection/49387116-0e68a0ae-514a-418e-99ac-13c636e5497f?source=collection_link"
+    "_exporter_id": "47762376"
   },
   "item": [
     {
@@ -168,7 +167,7 @@
               "script": {
                 "exec": [
                   "pm.test(\"Status code is 201\", function () { pm.response.to.have.status(201); });\r",
-                  ""
+                  "pm.environment.set(\"idUser\", pm.response.json().data._id)"
                 ],
                 "type": "text/javascript",
                 "packages": {},
@@ -181,7 +180,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"role\": \"{{Role}}\",\r\n    \"fullName\": \"{{FullName}}\",\r\n    \"email\": \"{{Email}}\",\r\n    \"secretQuestion\": \"{{SecretQuestion}}\",\r\n    \"secretAnswer\": \"{{SecretAnswer}}\",\r\n    \"password\": \"{{Passawork}}\",\r\n    \"confirmPassword\": \"{{Passawork}}\"\r\n}",
+              "raw": "{\r\n    \"role\": \"user\",\r\n    \"fullName\": \"{{FullName}}\",\r\n    \"email\": \"{{Email}}\",\r\n    \"secretQuestion\": \"{{SecretQuestion}}\",\r\n    \"secretAnswer\": \"{{SecretAnswer}}\",\r\n    \"password\": \"1234@Test0000\",\r\n    \"confirmPassword\": \"1234@Test0000\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
